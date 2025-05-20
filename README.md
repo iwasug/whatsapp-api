@@ -143,7 +143,7 @@ JWT_EXPIRES_IN=1h
 ```
 
 ### Authentication Endpoints
-- `POST /auth/register`: Register a new user. Body: `{ "username": "...", "password": "..." }`
+- `POST /auth/register`: Register a new user. Body: `{ "name": "...", "username": "...", "password": "..." }`
 - `POST /auth/login`: Authenticate a user. Body: `{ "username": "...", "password": "..." }`. Returns `{ "success": true, "token": "<JWT>" }`
 
 Include the JWT in the `Authorization` header for protected routes:

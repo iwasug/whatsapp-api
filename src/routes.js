@@ -39,6 +39,7 @@ if (enableLocalCallbackExample) {
     schema: {
       type: 'object',
       properties: {
+        name: { type: 'string', example: 'John Doe' },
         username: { type: 'string', example: 'user1' },
         password: { type: 'string', example: 'pass123' }
       }

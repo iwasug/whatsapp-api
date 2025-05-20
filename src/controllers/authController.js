@@ -4,18 +4,18 @@ const { pool } = require('../database')
 const { jwtSecret, jwtExpiresIn } = require('../config')
 
 /**
- * Register a new user with username and password
+ * Register a new user with name, username and password
  */
 const register = async (req, res) => {
-  const { username, password } = req.body
-  if (!username || !password) {
-    return res.status(400).json({ success: false, error: 'Username and password are required' })
+  const { name, username, password } = req.body
+  if (!name || !username || !password) {
+    return res.status(400).json({ success: false, error: 'Name, username and password are required' })
   }
   try {
     const hashed = await bcrypt.hash(password, 10)
     const result = await pool.query(
-      'INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id, username, created_at',
-      [username, hashed]
+      'INSERT INTO users (name, username, password) VALUES ($1, $2, $3) RETURNING id, name, username, created_at',
+      [name, username, hashed]
     )
     const user = result.rows[0]
     res.status(201).json({ success: true, user })
