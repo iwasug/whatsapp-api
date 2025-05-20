@@ -75,6 +75,25 @@ const rateLimiter = rateLimiting({
   message: "You can't make any more requests at the moment. Try again later"
 })
 
+// JWT authentication middleware
+const jwt = require('jsonwebtoken')
+const { jwtSecret } = require('./config')
+const authenticateJWT = (req, res, next) => {
+  const authHeader = req.headers.authorization
+  if (authHeader && authHeader.startsWith('Bearer ')) {
+    const token = authHeader.slice(7)
+    jwt.verify(token, jwtSecret, (err, user) => {
+      if (err) {
+        return res.status(401).json({ success: false, error: 'Invalid token' })
+      }
+      req.user = user
+      next()
+    })
+  } else {
+    return res.status(401).json({ success: false, error: 'No token provided' })
+  }
+}
+
 const sessionSwagger = async (req, res, next) => {
   /*
     #swagger.tags = ['Session']
@@ -184,5 +203,6 @@ module.exports = {
   messageSwagger,
   chatSwagger,
   groupChatSwagger,
-  rateLimiter
+  rateLimiter,
+  authenticateJWT
 }

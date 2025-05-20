@@ -16,6 +16,17 @@ const rateLimitMax = process.env.RATE_LIMIT_MAX || 1000
 const rateLimitWindowMs = process.env.RATE_LIMIT_WINDOW_MS || 1000
 const recoverSessions = (process.env.RECOVER_SESSIONS || '').toLowerCase() === 'true'
 
+// PostgreSQL database configuration
+const dbHost = process.env.DB_HOST
+const dbPort = process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : undefined
+const dbUser = process.env.DB_USER
+const dbPassword = process.env.DB_PASSWORD
+const dbDatabase = process.env.DB_DATABASE
+
+// JWT authentication configuration
+const jwtSecret = process.env.JWT_SECRET
+const jwtExpiresIn = process.env.JWT_EXPIRES_IN || '1h'
+
 module.exports = {
   sessionFolderPath,
   enableLocalCallbackExample,
@@ -29,5 +40,12 @@ module.exports = {
   webVersionCacheType,
   rateLimitMax,
   rateLimitWindowMs,
-  recoverSessions
+  recoverSessions,
+  dbHost,
+  dbPort,
+  dbUser,
+  dbPassword,
+  dbDatabase,
+  jwtSecret,
+  jwtExpiresIn
 }

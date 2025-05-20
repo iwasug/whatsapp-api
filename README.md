@@ -14,6 +14,7 @@ This project is a work in progress: star it, create issues, features or pull req
 [2. Features](#features)
 
 [3. Run Locally](#run-locally)
+[3.1. User Authentication](#user-authentication)
 
 [4. Testing](#testing)
 
@@ -124,6 +125,31 @@ npm run start
 ```
 
 5. Access the API at `http://localhost:3000`
+
+## User Authentication
+
+This API provides user registration and login capabilities secured with JWT tokens. Protected endpoints require a valid JWT in the `Authorization` header.
+
+### Environment Variables
+Add the following environment variables to your `.env` file:
+```bash
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+DB_DATABASE=your_db_name
+JWT_SECRET=your_jwt_secret
+JWT_EXPIRES_IN=1h
+```
+
+### Authentication Endpoints
+- `POST /auth/register`: Register a new user. Body: `{ "username": "...", "password": "..." }`
+- `POST /auth/login`: Authenticate a user. Body: `{ "username": "...", "password": "..." }`. Returns `{ "success": true, "token": "<JWT>" }`
+
+Include the JWT in the `Authorization` header for protected routes:
+```
+Authorization: Bearer <JWT>
+```
 
 ## Testing
 

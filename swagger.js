@@ -38,6 +38,10 @@ const doc = {
     {
       name: 'Message',
       description: 'May fail if the message is too old (Only from the last 100 Messages of the given chat)'
+    },
+    {
+      name: 'Auth',
+      description: 'User registration and authentication'
     }
   ],
   definitions: {

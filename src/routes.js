@@ -12,6 +12,7 @@ const chatController = require('./controllers/chatController')
 const groupChatController = require('./controllers/groupChatController')
 const messageController = require('./controllers/messageController')
 const contactController = require('./controllers/contactController')
+const authController = require('./controllers/authController')
 
 /**
  * ================
@@ -25,6 +26,41 @@ routes.get('/ping', healthController.ping)
 if (enableLocalCallbackExample) {
   routes.post('/localCallbackExample', [middleware.apikey, middleware.rateLimiter], healthController.localCallbackExample)
 }
+
+/**
+ * ======================
+ * AUTHENTICATION ENDPOINTS
+ * ======================
+ */
+/*
+  #swagger.tags = ['Auth']
+  #swagger.requestBody = {
+    required: true,
+    schema: {
+      type: 'object',
+      properties: {
+        username: { type: 'string', example: 'user1' },
+        password: { type: 'string', example: 'pass123' }
+      }
+    }
+  }
+*/
+routes.post('/auth/register', authController.register)
+/*
+  #swagger.tags = ['Auth']
+  #swagger.requestBody = {
+    required: true,
+    schema: {
+      type: 'object',
+      properties: {
+        username: { type: 'string', example: 'user1' },
+        password: { type: 'string', example: 'pass123' }
+      }
+    }
+  }
+*/
+routes.post('/auth/login', authController.login)
+
 
 /**
  * ================
@@ -44,6 +80,8 @@ sessionRouter.get('/restart/:sessionId', middleware.sessionNameValidation, sessi
 sessionRouter.get('/terminate/:sessionId', middleware.sessionNameValidation, sessionController.terminateSession)
 sessionRouter.get('/terminateInactive', sessionController.terminateInactiveSessions)
 sessionRouter.get('/terminateAll', sessionController.terminateAllSessions)
+// Protect client and other routes with JWT authentication
+routes.use(middleware.authenticateJWT)
 
 /**
  * ================
