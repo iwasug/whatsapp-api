@@ -1,4 +1,5 @@
 const { globalApiKey, rateLimitMax, rateLimitWindowMs } = require('./config')
+const { pool } = require('./database')
 const { sendErrorResponse } = require('./utils')
 const { validateSession } = require('./sessions')
 const rateLimiting = require('express-rate-limit')
@@ -18,13 +19,23 @@ const apikey = async (req, res, next) => {
         }
       }
   */
-  if (globalApiKey) {
-    const apiKey = req.headers['x-api-key']
-    if (!apiKey || apiKey !== globalApiKey) {
-      return sendErrorResponse(res, 403, 'Invalid API key')
+  const apiKey = req.headers['x-api-key']
+  if (globalApiKey && apiKey === globalApiKey) {
+    return next()
+  }
+  if (apiKey) {
+    try {
+      const result = await pool.query('SELECT id, username FROM users WHERE token = $1', [apiKey])
+      if (result.rows.length > 0) {
+        req.user = result.rows[0]
+        return next()
+      }
+    } catch (err) {
+      console.error('Error validating API key:', err)
+      return sendErrorResponse(res, 500, 'Internal server error')
     }
   }
-  next()
+  return sendErrorResponse(res, 403, 'Invalid API key')
 }
 
 const sessionNameValidation = async (req, res, next) => {

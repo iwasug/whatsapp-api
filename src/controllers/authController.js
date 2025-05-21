@@ -1,10 +1,23 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const crypto = require('crypto')
 const { pool } = require('../database')
 const { jwtSecret, jwtExpiresIn } = require('../config')
 
 /**
- * Register a new user with name, username and password
+ * Generate a random numeric token of given length.
+ */
+const generateNumericToken = (length = 50) => {
+  let token = ''
+  for (let i = 0; i < length; i++) {
+    token += crypto.randomInt(0, 10).toString()
+  }
+
+  return token
+}
+
+/**
+ * Register a new user with name, username, password, and assign an API token.
  */
 const register = async (req, res) => {
   const { name, username, password } = req.body
@@ -13,9 +26,10 @@ const register = async (req, res) => {
   }
   try {
     const hashed = await bcrypt.hash(password, 10)
+    const apiToken = generateNumericToken(50)
     const result = await pool.query(
-      'INSERT INTO users (name, username, password) VALUES ($1, $2, $3) RETURNING id, name, username, created_at',
-      [name, username, hashed]
+      'INSERT INTO users (name, username, password, token) VALUES ($1, $2, $3, $4) RETURNING id, name, username, token, created_at',
+      [name, username, hashed, apiToken]
     )
     const user = result.rows[0]
     res.status(201).json({ success: true, user })

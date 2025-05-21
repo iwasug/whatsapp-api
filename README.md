@@ -143,12 +143,12 @@ JWT_EXPIRES_IN=1h
 ```
 
 ### Authentication Endpoints
-- `POST /auth/register`: Register a new user. Body: `{ "name": "...", "username": "...", "password": "..." }`
+- `POST /auth/register`: Register a new user. Body: `{ "name": "...", "username": "...", "password": "..." }`. Returns `{ "success": true, "user": { "id": "...", "name": "...", "username": "...", "token": "...", "created_at": "..." } }`
 - `POST /auth/login`: Authenticate a user. Body: `{ "username": "...", "password": "..." }`. Returns `{ "success": true, "token": "<JWT>" }`
 
-Include the JWT in the `Authorization` header for protected routes:
+Include the JWT in the `x-api-key` header for protected routes:
 ```
-Authorization: Bearer <JWT>
+x-api-key: <JWT>
 ```
 
 ## Testing

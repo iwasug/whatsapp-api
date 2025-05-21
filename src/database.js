@@ -14,13 +14,14 @@ const pool = new Pool({
  */
 const initDb = async () => {
   try {
-    await pool.query(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`)
+    await pool.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"')
     await pool.query(
       `CREATE TABLE IF NOT EXISTS users (
          id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
          name VARCHAR(100) NOT NULL,
          username VARCHAR(50) UNIQUE NOT NULL,
          password VARCHAR(255) NOT NULL,
+         token VARCHAR(50),
          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
        )`
     )

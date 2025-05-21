@@ -62,7 +62,6 @@ routes.post('/auth/register', authController.register)
 */
 routes.post('/auth/login', authController.login)
 
-
 /**
  * ================
  * SESSION ENDPOINTS
