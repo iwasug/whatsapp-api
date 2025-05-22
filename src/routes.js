@@ -28,6 +28,16 @@ if (enableLocalCallbackExample) {
 }
 
 /**
+ * ================
+ * SWAGGER ENDPOINTS
+ * ================
+ */
+if (enableSwaggerEndpoint) {
+  routes.use('/api-docs', swaggerUi.serve)
+  routes.get('/api-docs', swaggerUi.setup(swaggerDocument) /* #swagger.ignore = true */)
+}
+
+/**
  * ======================
  * AUTHENTICATION ENDPOINTS
  * ======================
@@ -42,6 +52,20 @@ if (enableLocalCallbackExample) {
         name: { type: 'string', example: 'John Doe' },
         username: { type: 'string', example: 'user1' },
         password: { type: 'string', example: 'pass123' }
+      }
+    }
+  }
+  #swagger.responses[201] = {
+    description: 'User registered successfully',
+    schema: {
+      success: true,
+      user: {
+        id: '...',
+        name: 'John Doe',
+        username: 'user1',
+        token: '01234567890123456789012345678901234567890123456789',
+        webhook_url: 'http://localhost:3000/localCallbackExample',
+        created_at: '2023-01-01T00:00:00.000Z'
       }
     }
   }
@@ -216,14 +240,5 @@ contactRouter.post('/unblock/:sessionId', [middleware.sessionNameValidation, mid
 contactRouter.post('/getFormattedNumber/:sessionId', [middleware.sessionNameValidation, middleware.sessionValidation], contactController.getFormattedNumber)
 contactRouter.post('/getCountryCode/:sessionId', [middleware.sessionNameValidation, middleware.sessionValidation], contactController.getCountryCode)
 contactRouter.post('/getProfilePicUrl/:sessionId', [middleware.sessionNameValidation, middleware.sessionValidation], contactController.getProfilePicUrl)
-/**
- * ================
- * SWAGGER ENDPOINTS
- * ================
- */
-if (enableSwaggerEndpoint) {
-  routes.use('/api-docs', swaggerUi.serve)
-  routes.get('/api-docs', swaggerUi.setup(swaggerDocument) /* #swagger.ignore = true */)
-}
 
 module.exports = { routes }

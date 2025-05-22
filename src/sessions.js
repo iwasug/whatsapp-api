@@ -2,8 +2,9 @@ const { Client, LocalAuth } = require('whatsapp-web.js')
 const fs = require('fs')
 const path = require('path')
 const sessions = new Map()
-const { baseWebhookURL, sessionFolderPath, maxAttachmentSize, setMessagesAsSeen, webVersion, webVersionCacheType, recoverSessions } = require('./config')
+const { baseWebhookURL, sessionFolderPath, maxAttachmentSize, setMessagesAsSeen, webVersion, webVersionCacheType, recoverSessions, dbUser } = require('./config')
 const { triggerWebhook, waitForNestedObject, checkIfEventisEnabled } = require('./utils')
+const { pool } = require('./database')
 
 // Function to validate if the session is ready
 const validateSession = async (sessionId) => {
@@ -130,6 +131,7 @@ const setupSession = (sessionId) => {
 
     client.initialize().catch(err => console.log('Initialize error:', err.message))
 
+    // asynchronously initialize event handlers with user-specific webhook from database or env/base
     initializeEvents(client, sessionId)
 
     // Save the session to the Map
@@ -140,9 +142,21 @@ const setupSession = (sessionId) => {
   }
 }
 
-const initializeEvents = (client, sessionId) => {
-  // check if the session webhook is overridden
-  const sessionWebhook = process.env[sessionId.toUpperCase() + '_WEBHOOK_URL'] || baseWebhookURL
+const initializeEvents = async (client, sessionId) => {
+  let sessionWebhook = process.env[sessionId.toUpperCase() + '_WEBHOOK_URL']
+  if (!sessionWebhook && dbUser) {
+    try {
+      const result = await pool.query('SELECT webhook_url FROM users WHERE username = $1', [sessionId])
+      if (result.rows[0] && result.rows[0].webhook_url) {
+        sessionWebhook = result.rows[0].webhook_url
+      }
+    } catch (err) {
+      console.error(`Failed to retrieve webhook_url for user ${sessionId}:`, err.message)
+    }
+  }
+  if (!sessionWebhook) {
+    sessionWebhook = baseWebhookURL
+  }
 
   if (recoverSessions) {
     waitForNestedObject(client, 'pupPage').then(() => {

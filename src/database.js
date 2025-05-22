@@ -22,8 +22,12 @@ const initDb = async () => {
          username VARCHAR(50) UNIQUE NOT NULL,
          password VARCHAR(255) NOT NULL,
          token VARCHAR(50),
+         webhook_url VARCHAR(255),
          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
        )`
+    )
+    await pool.query(
+      'ALTER TABLE users ADD COLUMN IF NOT EXISTS webhook_url VARCHAR(255)'
     )
   } catch (err) {
     console.error('Error initializing database:', err)

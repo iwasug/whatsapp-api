@@ -27,6 +27,10 @@
     {
       "name": "Message",
       "description": "May fail if the message is too old (Only from the last 100 Messages of the given chat)"
+    },
+    {
+      "name": "Auth",
+      "description": "User registration and authentication"
     }
   ],
   "paths": {
@@ -78,6 +82,44 @@
             "apiKeyAuth": []
           }
         ]
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       }
     },
     "/session/start/{sessionId}": {
@@ -585,11 +627,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -645,11 +697,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -734,11 +796,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -823,11 +895,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -883,11 +965,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -943,11 +1035,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -1032,11 +1134,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -1121,11 +1233,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -1181,11 +1303,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -1270,11 +1402,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -1359,11 +1501,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -1448,11 +1600,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -1508,11 +1670,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -1597,11 +1769,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -1686,11 +1868,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -1746,11 +1938,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -1845,11 +2047,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -1934,11 +2146,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -2023,11 +2245,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -2112,11 +2344,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -2162,11 +2404,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -2251,11 +2503,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -2350,11 +2612,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -2439,11 +2711,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -2538,11 +2820,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -2732,11 +3024,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -2792,11 +3094,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -2852,11 +3164,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -2941,11 +3263,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -3030,11 +3362,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -3129,11 +3471,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -3218,11 +3570,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -3307,11 +3669,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -3396,11 +3768,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -3485,11 +3867,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -3545,11 +3937,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -3634,11 +4036,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -3723,11 +4135,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -3812,11 +4234,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -3901,11 +4333,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -4000,11 +4442,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -4089,11 +4541,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -4178,11 +4640,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -4267,11 +4739,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -4356,11 +4838,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -4445,11 +4937,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -4534,11 +5036,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -4623,11 +5135,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -4712,11 +5234,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -4801,11 +5333,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -4890,11 +5432,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -4979,11 +5531,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -5068,11 +5630,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -5157,11 +5729,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -5246,11 +5828,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -5335,11 +5927,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -5424,11 +6026,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -5513,11 +6125,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -5612,11 +6234,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -5711,11 +6343,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -5810,11 +6452,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -5909,11 +6561,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -6008,11 +6670,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -6107,11 +6779,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -6206,11 +6888,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -6305,11 +6997,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -6404,11 +7106,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -6503,11 +7215,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -6602,11 +7324,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -6701,11 +7433,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -6800,11 +7542,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -6889,11 +7641,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -6978,11 +7740,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -7067,11 +7839,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -7156,11 +7938,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -7245,11 +8037,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -7334,11 +8136,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",
@@ -7423,11 +8235,21 @@
             },
             "description": "Unique identifier for the session (alphanumeric and - allowed)",
             "example": "f8377d8d-a589-4242-9ba6-9486a04ef80c"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden.",

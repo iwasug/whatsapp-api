@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const crypto = require('crypto')
 const { pool } = require('../database')
-const { jwtSecret, jwtExpiresIn } = require('../config')
+const { jwtSecret, jwtExpiresIn, baseWebhookURL } = require('../config')
 
 /**
  * Generate a random numeric token of given length.
@@ -28,8 +28,8 @@ const register = async (req, res) => {
     const hashed = await bcrypt.hash(password, 10)
     const apiToken = generateNumericToken(50)
     const result = await pool.query(
-      'INSERT INTO users (name, username, password, token) VALUES ($1, $2, $3, $4) RETURNING id, name, username, token, created_at',
-      [name, username, hashed, apiToken]
+      'INSERT INTO users (name, username, password, token, webhook_url) VALUES ($1, $2, $3, $4, $5) RETURNING id, name, username, token, webhook_url, created_at',
+      [name, username, hashed, apiToken, baseWebhookURL]
     )
     const user = result.rows[0]
     res.status(201).json({ success: true, user })

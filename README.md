@@ -143,7 +143,7 @@ JWT_EXPIRES_IN=1h
 ```
 
 ### Authentication Endpoints
-- `POST /auth/register`: Register a new user. Body: `{ "name": "...", "username": "...", "password": "..." }`. Returns `{ "success": true, "user": { "id": "...", "name": "...", "username": "...", "token": "...", "created_at": "..." } }`
+- `POST /auth/register`: Register a new user. Body: `{ "name": "...", "username": "...", "password": "..." }`. Returns `{ "success": true, "user": { "id": "...", "name": "...", "username": "...", "token": "...", "webhook_url": "...", "created_at": "..." } }`
 - `POST /auth/login`: Authenticate a user. Body: `{ "username": "...", "password": "..." }`. Returns `{ "success": true, "token": "<JWT>" }`
 
 Include the JWT in the `x-api-key` header for protected routes:
@@ -171,6 +171,8 @@ Also, there is an option to run the documentation endpoint locally by setting th
 By default, all callback events are delivered to the webhook defined with the `BASE_WEBHOOK_URL` environment variable.
 This can be overridden by setting the `*_WEBHOOK_URL` environment variable, where `*` is your sessionId.
 For example, if you have the sessionId defined as `DEMO`, the environment variable must be `DEMO_WEBHOOK_URL`.
+
+Alternatively, the service will use the webhook URL stored for each user in the database (`users.webhook_url`) when no session-specific environment variable is set.
 
 By setting the `DISABLED_CALLBACKS` environment variable you can specify what events you are **not** willing to receive on your webhook.
 
